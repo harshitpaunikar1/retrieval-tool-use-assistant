@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Logic: Routing the Multi-Tool Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=IBM+Plex+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* Greyscale Design System */
+    :root {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --surface-dark: #111111;
+      --ink-black: #0a0a0a;
+      --ink-mid: #555555;
+      --ink-light: #888888;
+      --border: #e8e8e8;
+      --border-strong: #111111;
+      
+      --font-body: 'IBM Plex Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink-black);
+      font-family: var(--font-body);
+      line-height: 1.65;
+      font-size: 16.5px;
+      overflow-x: hidden;
+    }
+
+    /* Layout Emphasis: Off-axis placement */
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr minmax(auto, 720px) 1fr;
+      gap: 2rem;
+      padding: 4rem 1.5rem;
+    }
+
+    .main-content {
+      grid-column: 2;
+    }
+
+    /* Header styling */
+    header {
+      margin-bottom: 5rem;
+      border-bottom: 3px solid var(--border-strong);
+      padding-bottom: 2rem;
+      grid-column: 1 / -1;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    h1 {
+      font-family: var(--font-mono);
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 700;
+      color: var(--ink-black);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.25rem;
+      color: var(--ink-mid);
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    p {
+      margin-bottom: 1.8rem;
+    }
+
+    strong {
+      color: var(--ink-black);
+      font-weight: 600;
+    }
+    
+    /* Routing Verdict H2s */
+    h2 {
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--ink-black);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 4.5rem 0 2rem -2rem; /* Off-axis pull */
+      padding: 0.5rem 0 0.5rem 1rem;
+      border-left: 5px solid var(--ink-black);
+      background-color: var(--surface);
+      display: inline-block;
+      min-width: 300px;
+    }
+    @media (max-width: 768px) {
+      h2 { margin-left: 0; min-width: auto; }
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin: 2.5rem 0 1rem 0;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+
+    /* Code Blocks */
+    pre, code {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+
+    pre {
+      background-color: var(--surface-dark);
+      color: #f5f5f5;
+      padding: 1.5rem;
+      margin: 2rem 0 2rem -1.5rem; /* Off-axis pull */
+      border-right: 4px solid var(--ink-light);
+      overflow-x: auto;
+      line-height: 1.6;
+    }
+    @media (max-width: 768px) {
+      pre { margin-left: 0; }
+    }
+
+    .comment { color: #888888; font-style: italic; }
+    .keyword { color: #ffffff; font-weight: 700; }
+    .string { color: #cccccc; }
+
+    /* SVG Containers */
+    .figure-container {
+      grid-column: 1 / -1; /* spans full width but limited by max-width inside */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 4rem 0;
+    }
+
+    .svg-canvas {
+      width: 100%;
+      max-width: 900px;
+      border: 1px solid var(--ink-black);
+      background-color: #ffffff;
+      padding: 2rem;
+    }
+
+    figcaption {
+      max-width: 800px;
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      font-style: italic;
+      text-align: left;
+    }
+
+    /* Path Labels */
+    .path-label {
+      font-family: var(--font-mono);
+      background: var(--ink-black);
+      color: #ffffff;
+      padding: 0.15rem 0.5rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-block;
+      margin-right: 0.5rem;
+      vertical-align: middle;
+    }
+
+    /* High contrast blocks */
+    .callout {
+      border: 2px solid var(--border-strong);
+      padding: 2rem;
+      margin: 3rem 0;
+    }
+    .callout p:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="grid-container">
+  <header>
+    <h1>The Over-Routed Assistant</h1>
+    <p class="subtitle">When an architecture integrates search, vector retrieval, APIs, calculator functions, and memory logs, the primary engineering problem is no longer capability. The primary problem is the control logic that decides when to do exactly nothing.</p>
+  </header>
+
+  <main class="main-content">
+    <p>A mature multi-tool assistant rarely fails because it lacks the capacity to retrieve a document or invoke a weather API. It fails because it invokes both simultaneously, searches memory for related context it doesn't need, and synthesizes the noisy results into an incoherent response riddled with hallucinations. This is the over-routed system: a platform where every subsystem acts as a default rather than as a deliberate exception.</p>
+
+    <p>Architectural maturity is not measured by the number of external tools attached to the prompt. It is measured by the precision of the routing mechanism. Treating retrieval, tooling, and database lookup as unconditionally active workflows destroys latency, consumes unnecessary tokens, and muddies context payloads with irrelevant JSON. The assistant’s control logic must enforce selective activation.</p>
+
+    <h2>VERDICT [01] : The Router Over Everything</h2>
+
+    <p>At the center of a disciplined agent architecture is the Router—a lightweight, fast classification step that fires before any heavy lifting occurs. The router’s sole responsibility is categorization: does this user intent require external knowledge, sequential tool execution, a direct conversation response, or clarifying questions?</p>
+
+    <p>This classification should rarely be performed by the largest, slowest language model in your arsenal. Fast, smaller models (or even traditional classifiers) are highly capable of intent detection. Only by cleanly categorizing the utterance do we establish the boundaries of the rest of the execution.</p>
+
+    <div class="callout">
+      <p><span class="path-label">ROUTING RULE</span> If the user enters "hello" or "thanks", executing a vector search over the product knowledge base is a structural failure. The router must trap this instantly into the "Direct Answer" path and exit the processing loop.</p>
+    </div>
+
+    <!-- DIAGRAM: THE ROUTER COMPASS -->
+    <div class="figure-container">
+      <div class="svg-canvas">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="100%" style="display:block;">
+          <!-- Background -->
+          <rect width="900" height="600" fill="#ffffff" />
+          
+          <!-- Outer Rings (Support Layers) -->
+          <circle cx="450" cy="300" r="260" fill="none" stroke="#e8e8e8" stroke-width="20" />
+          <path id="log-path" d="M 190 300 A 260 260 0 0 1 710 300" fill="none" />
+          <text font-family="'JetBrains Mono', monospace" font-size="12" fill="#888888" letter-spacing="0.2em" font-weight="700">
+            <textPath href="#log-path" startOffset="50%" text-anchor="middle">>> ASYNC LOGGING AND TRACING LAYER >></textPath>
+          </text>
+          
+          <circle cx="450" cy="300" r="220" fill="none" stroke="#f5f5f5" stroke-width="20" />
+          <path id="mem-path" d="M 230 300 A 220 220 0 0 0 670 300" fill="none" />
+          <text font-family="'JetBrains Mono', monospace" font-size="12" fill="#555555" letter-spacing="0.2em" font-weight="700">
+            <textPath href="#mem-path" startOffset="50%" text-anchor="middle"><< BACKGROUND MEMORY UPDATE <<</textPath>
+          </text>
+
+          <!-- Core Branches (The Compass) -->
+          <!-- Center Router Node -->
+          <circle cx="450" cy="300" r="50" fill="#init" stroke="#111111" stroke-width="3" />
+          <text x="450" y="295" font-family="'IBM Plex Sans', sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#0a0a0a">INTENT</text>
+          <text x="450" y="315" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="middle" fill="#0a0a0a">ROUTER</text>
+
+          <!-- North Path: Retrieval -->
+          <line x1="450" y1="250" x2="450" y2="120" stroke="#111111" stroke-width="3" marker-end="url(#arrow-head)" />
+          <rect x="375" y="60" width="150" height="40" fill="#111111" />
+          <text x="450" y="85" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="middle" fill="#ffffff">RETRIEVAL (RAG)</text>
+
+          <!-- East Path: Tool Use -->
+          <line x1="500" y1="300" x2="680" y2="300" stroke="#111111" stroke-width="3" marker-end="url(#arrow-head)" />
+          <rect x="690" y="280" width="130" height="40" fill="#111111" />
+          <text x="755" y="305" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="middle" fill="#ffffff">TOOL EXEC</text>
+
+          <!-- South Path: Direct Answer -->
+          <line x1="450" y1="350" x2="450" y2="480" stroke="#111111" stroke-width="3" marker-end="url(#arrow-head)" />
+          <rect x="375" y="500" width="150" height="40" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+          <text x="450" y="525" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">DIRECT ANSWER</text>
+
+          <!-- West Path: Clarification -->
+          <line x1="400" y1="300" x2="220" y2="300" stroke="#111111" stroke-width="3" marker-end="url(#arrow-head)" />
+          <rect x="80" y="280" width="120" height="40" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+          <text x="140" y="305" font-family="'JetBrains Mono', monospace" font-size="12" font-weight="700" text-anchor="middle" fill="#111111">CLARIFY</text>
+
+          <defs>
+            <marker id="arrow-head" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <polygon points="0 0, 6 3, 0 6" fill="#111111" />
+            </marker>
+          </defs>
+        </svg>
+      </div>
+      <figcaption>Fig 1. — The Router Compass. User intent arrives at the central hub and is dispatched entirely down one isolated branch axis. Background support layers such as database-backed conversational memory and application tracing operate as asynchronous outer rings, actively maintaining system state without interfering with the linear execution of the primary prompt logic.</figcaption>
+    </div>
+
+    <h2>VERDICT [02] : Retrieval Isolation</h2>
+
+    <p>If the router determines the query requires external knowledge, execution routes strictly to the retrieval pipeline (RAG). The retrieval branch explicitly drops tooling logic. We do not pass function definitions to the generation model along with the retrieved chunks. Why? Because function schemas consume critical context window limits, and injecting them during a synthesis task distracts the model from focusing purely on the retrieved data.</p>
+
+    <p>We maintain strict boundaries: if we are answering a policy question based on internal docs, we query the vector store, rerank the chunks, and ask the synthesis prompt to generate an answer. No database write capabilities, no calculator APIs. The output is bounded by what was found.</p>
+
+<pre><span class="keyword">def</span> execute_retrieval_branch(user_query: str):
+    <span class="comment"># 1. Transform query for semantic search</span>
+    search_vector = embed(user_query)
+    
+    <span class="comment"># 2. Retrieve bounded context (strict limit)</span>
+    raw_docs = vector_db.query(search_vector, top_k=5)
+    context = rerank(raw_docs, user_query, top_n=2)
+    
+    <span class="comment"># 3. Synthesize cleanly without tool schemas appended</span>
+    <span class="keyword">return</span> llm_generate(
+        system_prompt=<span class="string">"Answer strictly using context. No outside knowledge."</span>,
+        context=context,
+        query=user_query,
+        tools=[] <span class="comment"># Tool definitions are suppressed here</span>
+    )
+</pre>
+
+    <h2>VERDICT [03] : Tool Use vs Autonomy</h2>
+
+    <p>When the router channels the intent to the Tool Use execution branch, the architecture shifts. This path handles actionable states: mutating data, executing an API, or fetching live operational metrics. Here, the context payload includes explicit function schemas but avoids polluting the prompt with vast chunks of vector-retrieved text. Tooling queries are structural, not semantic.</p>
+
+    <p>A crucial check in this branch is the halting condition. An unchecked agentic loop—"thought, action, observation"—can spiral indefinitely if an API returns a subtly malformed response. Tool execution must be tightly gated: define maximum iteration counts and enforce strict rollback boundaries for destructive commands.</p>
+
+    <h2>VERDICT [04] : The Outer Rings of Memory</h2>
+
+    <p>A common misstep is injecting the entire uncompressed session history into every prompt to maintain "memory." This turns every query into an escalating context window crisis. In a disciplined control logic setup, conversational memory is an outer ring, accessed and updated independently of the core routing decision.</p>
+
+    <p>Memory operates in the background: an asynchronous process summarizes old conversation turns and stores them in an entity tracker. When the user says, "Yes, update it," the router recognizes the need for Clarification or Tool Execution, and specifically queries the short-term entity tracker to figure out what "it" resolving to. The long-term logs never enter the primary tool-calling prompt directly.</p>
+
+    <p>By enforcing this compass geometry—dispatching exclusively to the appropriate node, shedding irrelevant schemas, and relegating memory to an asynchronous lookup—the assistant evolves from a sprawling experiment into a deterministic software component. A predictable subsystem that executes specific actions reliably requires removing the freedom for it to do everything else.</p>
+  </main>
+</div>
+
+</body>
+</html>
