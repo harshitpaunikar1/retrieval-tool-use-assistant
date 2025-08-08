@@ -20,3 +20,7 @@
 
 - Task summary: By this point I had the rough direction, so the work became more practical. I spent most of the day trying to map the core user journey from start to finish in plain steps and make the whole thing feel less half baked. Once the base made some sense, I could finally move a bit faster and stop second guessing every tiny decision. There were a few moving parts here, so I kept simplifying the plan in my head before touching anything else.
 - Deliverable: I wrapped up the day with user flow mostly in place. It was not perfect, but it was good enough to keep the project moving. There were still a couple of loose parts, but nothing serious enough to block the next step.
+## 2025-08-08 - Day 4: User flow
+
+- Task summary: One more pass: went back and reorganized the config section so values are not buried mid-script.
+- Deliverable: Cleaner than this morning's version.
