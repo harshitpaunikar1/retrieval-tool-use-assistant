@@ -36,3 +36,7 @@
 
 - Task summary: Ended up revisiting this in the evening — added a sanity check assertion that would catch obvious data shape issues early.
 - Deliverable: Pushed before end of day.
+## 2025-08-12 - Day 6: Architecture
+
+- Task summary: Quick follow-up: spent time just reading back through everything to make sure it still made sense end to end.
+- Deliverable: Small fix, clean result.
