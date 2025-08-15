@@ -52,3 +52,7 @@
 
 - Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to add the minimum JavaScript interactions needed to make the flow understandable so the final result looked a bit more complete. By now I had enough structure to keep going without staring at the screen too long, which honestly helped a lot. I spent part of the day just reducing confusion between components, names, and responsibilities.
 - Deliverable: Ended the day with working interactions in hand, plus a few side notes on what still needed fixing later. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
+## 2025-08-15 - Day 9: Interactions
+
+- Task summary: Ended up revisiting this in the evening — found a duplicate function that slipped in during copy-paste. Removed it.
+- Deliverable: Nothing dramatic — just keeping things tidy.
