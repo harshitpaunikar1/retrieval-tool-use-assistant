@@ -60,3 +60,7 @@
 
 - Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to create or organize diagrams, screenshots, and supporting visuals so the final result looked a bit more complete. I was not trying to add anything fancy here, just making sure the thing looked complete enough to show someone. There were a few moving parts here, so I kept simplifying the plan in my head before touching anything else.
 - Deliverable: Ended the day with support visuals in hand, plus a few side notes on what still needed fixing later. There were still a couple of loose parts, but nothing serious enough to block the next step.
+## 2025-08-18 - Day 10: Artifacts
+
+- Task summary: Ended up revisiting this in the evening — there was a subtle off-by-one error in the index slicing that was silently skewing results. Caught it and fixed it.
+- Deliverable: Pushed before end of day.
