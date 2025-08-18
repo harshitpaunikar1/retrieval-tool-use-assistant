@@ -64,3 +64,7 @@
 
 - Task summary: Ended up revisiting this in the evening — there was a subtle off-by-one error in the index slicing that was silently skewing results. Caught it and fixed it.
 - Deliverable: Pushed before end of day.
+## 2025-08-18 - Day 10: Artifacts
+
+- Task summary: One more pass: fixed a type coercion issue that was causing silent NaN propagation downstream.
+- Deliverable: Solid now, moving on.
