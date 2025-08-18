@@ -68,3 +68,7 @@
 
 - Task summary: One more pass: fixed a type coercion issue that was causing silent NaN propagation downstream.
 - Deliverable: Solid now, moving on.
+## 2025-08-18 - Day 10: Artifacts
+
+- Task summary: Came back after lunch and realized the output formatting looked messy when printed, so added a cleaner display block.
+- Deliverable: Good enough to not be embarrassing.
