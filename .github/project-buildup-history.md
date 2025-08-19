@@ -72,3 +72,7 @@
 
 - Task summary: Came back after lunch and realized the output formatting looked messy when printed, so added a cleaner display block.
 - Deliverable: Good enough to not be embarrassing.
+## 2025-08-19 - Day 11: README check
+
+- Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to write a README that explains the problem, solution, and how to review the project so the final result looked a bit more complete. Most of the heavy lifting was already done, so this part was more about making the rough edges less obvious. The tricky bit was making the system sound realistic without pretending every edge case was solved.
+- Deliverable: Ended the day with project README in hand, plus a few side notes on what still needed fixing later. It was not super polished, just stable enough that I felt okay moving forward.
