@@ -202,7 +202,7 @@
 
     <h2>VERDICT [01] : The Router Over Everything</h2>
 
-    <p>At the center of a disciplined agent architecture is the Router—a lightweight, fast classification step that fires before any heavy lifting occurs. The router’s sole responsibility is categorization: does this user intent require external knowledge, sequential tool execution, a direct conversation response, or clarifying questions?</p>
+    <p>At the center of a disciplined agent architecture is the Router-a lightweight, fast classification step that fires before any heavy lifting occurs. The router’s sole responsibility is categorization: does this user intent require external knowledge, sequential tool execution, a direct conversation response, or clarifying questions?</p>
 
     <p>This classification should rarely be performed by the largest, slowest language model in your arsenal. Fast, smaller models (or even traditional classifiers) are highly capable of intent detection. Only by cleanly categorizing the utterance do we establish the boundaries of the rest of the execution.</p>
 
@@ -263,7 +263,7 @@
           </defs>
         </svg>
       </div>
-      <figcaption>Fig 1. — The Router Compass. User intent arrives at the central hub and is dispatched entirely down one isolated branch axis. Background support layers such as database-backed conversational memory and application tracing operate as asynchronous outer rings, actively maintaining system state without interfering with the linear execution of the primary prompt logic.</figcaption>
+      <figcaption>Fig 1. - The Router Compass. User intent arrives at the central hub and is dispatched entirely down one isolated branch axis. Background support layers such as database-backed conversational memory and application tracing operate as asynchronous outer rings, actively maintaining system state without interfering with the linear execution of the primary prompt logic.</figcaption>
     </div>
 
     <h2>VERDICT [02] : Retrieval Isolation</h2>
@@ -293,7 +293,7 @@
 
     <p>When the router channels the intent to the Tool Use execution branch, the architecture shifts. This path handles actionable states: mutating data, executing an API, or fetching live operational metrics. Here, the context payload includes explicit function schemas but avoids polluting the prompt with vast chunks of vector-retrieved text. Tooling queries are structural, not semantic.</p>
 
-    <p>A crucial check in this branch is the halting condition. An unchecked agentic loop—"thought, action, observation"—can spiral indefinitely if an API returns a subtly malformed response. Tool execution must be tightly gated: define maximum iteration counts and enforce strict rollback boundaries for destructive commands.</p>
+    <p>A crucial check in this branch is the halting condition. An unchecked agentic loop-"thought, action, observation"-can spiral indefinitely if an API returns a subtly malformed response. Tool execution must be tightly gated: define maximum iteration counts and enforce strict rollback boundaries for destructive commands.</p>
 
     <h2>VERDICT [04] : The Outer Rings of Memory</h2>
 
@@ -301,7 +301,7 @@
 
     <p>Memory operates in the background: an asynchronous process summarizes old conversation turns and stores them in an entity tracker. When the user says, "Yes, update it," the router recognizes the need for Clarification or Tool Execution, and specifically queries the short-term entity tracker to figure out what "it" resolving to. The long-term logs never enter the primary tool-calling prompt directly.</p>
 
-    <p>By enforcing this compass geometry—dispatching exclusively to the appropriate node, shedding irrelevant schemas, and relegating memory to an asynchronous lookup—the assistant evolves from a sprawling experiment into a deterministic software component. A predictable subsystem that executes specific actions reliably requires removing the freedom for it to do everything else.</p>
+    <p>By enforcing this compass geometry-dispatching exclusively to the appropriate node, shedding irrelevant schemas, and relegating memory to an asynchronous lookup-the assistant evolves from a sprawling experiment into a deterministic software component. A predictable subsystem that executes specific actions reliably requires removing the freedom for it to do everything else.</p>
   </main>
 </div>
 

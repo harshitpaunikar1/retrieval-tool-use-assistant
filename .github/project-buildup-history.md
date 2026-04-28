@@ -34,7 +34,7 @@
 - Deliverable: Ended the day with system sketch in hand, plus a few side notes on what still needed fixing later. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
 ## 2025-08-12 - Day 6: Architecture
 
-- Task summary: Ended up revisiting this in the evening — added a sanity check assertion that would catch obvious data shape issues early.
+- Task summary: Ended up revisiting this in the evening - added a sanity check assertion that would catch obvious data shape issues early.
 - Deliverable: Pushed before end of day.
 ## 2025-08-12 - Day 6: Architecture
 
@@ -54,15 +54,15 @@
 - Deliverable: Ended the day with working interactions in hand, plus a few side notes on what still needed fixing later. I also left myself a few rough reminders for the next day so I would not have to rediscover the same context again.
 ## 2025-08-15 - Day 9: Interactions
 
-- Task summary: Ended up revisiting this in the evening — found a duplicate function that slipped in during copy-paste. Removed it.
-- Deliverable: Nothing dramatic — just keeping things tidy.
+- Task summary: Ended up revisiting this in the evening - found a duplicate function that slipped in during copy-paste. Removed it.
+- Deliverable: Nothing dramatic - just keeping things tidy.
 ## 2025-08-18 - Day 10: Artifacts
 
 - Task summary: Closer to the end, I was mostly tightening things up instead of inventing new scope. The job for the day was to create or organize diagrams, screenshots, and supporting visuals so the final result looked a bit more complete. I was not trying to add anything fancy here, just making sure the thing looked complete enough to show someone. There were a few moving parts here, so I kept simplifying the plan in my head before touching anything else.
 - Deliverable: Ended the day with support visuals in hand, plus a few side notes on what still needed fixing later. There were still a couple of loose parts, but nothing serious enough to block the next step.
 ## 2025-08-18 - Day 10: Artifacts
 
-- Task summary: Ended up revisiting this in the evening — there was a subtle off-by-one error in the index slicing that was silently skewing results. Caught it and fixed it.
+- Task summary: Ended up revisiting this in the evening - there was a subtle off-by-one error in the index slicing that was silently skewing results. Caught it and fixed it.
 - Deliverable: Pushed before end of day.
 ## 2025-08-18 - Day 10: Artifacts
 
